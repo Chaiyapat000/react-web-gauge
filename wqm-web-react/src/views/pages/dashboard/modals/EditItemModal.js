@@ -41,19 +41,19 @@ class EditItemModal extends React.Component {
         },
         ec: {
           min: 0.0,
-          max: 20.0,
+          max: 3000.0,
         },
         do: {
           min: 0.0,
           max: 20.0,
         },
         temperature: {
-          min: -55.0,
-          max: 125.0,
+          min: 0.0,
+          max: 100.0,
         },
         turbidity: {
           min: 0.0,
-          max: 25.0,
+          max: 3000.0,
         },
         tds: {
           min: 0.0,
@@ -61,7 +61,7 @@ class EditItemModal extends React.Component {
         },
         salinity: {
           min: 0.0,
-          max: 500.0,
+          max: 20.0,
         },
         ammonia: {
           min: 0.0,
@@ -959,7 +959,7 @@ class EditItemModal extends React.Component {
           </Row>
 
           <Row>
-            {console.log("/////////// ",this.state.station.values.ammonia.status)}
+            
             <Col id="check1" xs="4">
               <Input
                 addon
