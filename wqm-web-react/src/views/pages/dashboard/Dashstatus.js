@@ -42,9 +42,9 @@ class Dashstatus extends React.Component {
             <CardText>
               <Badge color="warning"> {this.props.dash_name} </Badge>{" "}
               {this.props.activate == 1 ? (
-                <Badge color="success"> แจ้งเตือน </Badge>
+                <Badge color="success"> ใช้บำบัด </Badge>
               ) : (
-                <Badge color="secondary"> แจ้งเตือน </Badge>
+                <Badge color="secondary"> ใช้บำบัด </Badge>
               )}
             </CardText>
             <CardText style={{ textAlign: "center" }}>
