@@ -34,7 +34,7 @@ class AddItemModal extends React.Component {
         },
         ec: {
           min: 0.0,
-          max: 20.0,
+          max: 3000.0,
         },
         do: {
           min: 0.0,
