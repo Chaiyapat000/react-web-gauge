@@ -139,7 +139,7 @@ export default function GaugeChartdetail2(props) {
   }
   console.log("--------------"+data)
   return (
-    <div>
+    <div className="max-width container-lg">
       <Chart
         height={140}
         chartType="Gauge"

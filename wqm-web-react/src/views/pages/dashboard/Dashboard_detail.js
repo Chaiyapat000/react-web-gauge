@@ -368,8 +368,8 @@ class Dashboard_detail extends React.Component {
           </Col>
           <Col md={9} style={{ backgroundColor: "whitesmoke" }}>
             {curent_value ? (
-              <Row>
-                <Card className="m-2 shadow bg-white rounded-lg border-0">
+              <Row className="col-3-sm">
+                <Card className="m-2 shadow bg-white rounded-lg border-0 ">
                   <Dashstatus
                     dash_name={"Temperature"}
                     value={curent_value.temperature}
@@ -462,19 +462,8 @@ class Dashboard_detail extends React.Component {
               </Row>
             )}
 
-            <br></br>
-            <br></br>
 
-            {/* <Card>
-              <div>
-                <RechartGraph
-                  measured_data={this.state.measured_data}
-                  measured_dataType="ph"
-                  graphWidth={this.state.current_width}
-                />
-              </div>
-            </Card>
-          */}
+        
             <br></br>
             <br></br>
 

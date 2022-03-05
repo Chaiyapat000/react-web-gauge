@@ -36,8 +36,8 @@ class Dashstatus extends React.Component {
     //console.log("11111111111111111111");
     //console.log(this.props);
     return (
-      <div className="col-6 col-sm-6 col-lg-3 p-0">
-        <Card className="m-2 shadow bg-white rounded-lg border-0" color="light">
+      
+        <Card className="" color="light">
           <CardBody>
             <CardText>
               <Badge color="warning"> {this.props.dash_name} </Badge>{" "}
@@ -54,7 +54,7 @@ class Dashstatus extends React.Component {
             {/*<GaugeChartdetail2  dash_type={this.props.dash_name} value={this.props.value}/>*/}
           </CardBody>
         </Card>
-      </div>
+      
     );
   }
 }
