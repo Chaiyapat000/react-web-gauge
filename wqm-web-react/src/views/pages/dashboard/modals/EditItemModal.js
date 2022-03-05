@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import { InputGroup, InputGroupAddon, InputGroupText, Input, Row, Col, Label } from 'reactstrap';
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupText,
+  Input,
+  Row,
+  Col,
+  Label,
+} from "reactstrap";
 import Geocode from "react-geocode";
 import InputRange from "react-input-range";
 
 import WrappedMap from "./gmap/MapContainer";
-import {history} from '../../../../history'
-import "../../../../assets/css/dash.css"
-import { apiKey } from '../../../../functions/googleMapConfig'
-import {EditStationInfo} from '../../../../functions/apiActions'
-
-
+import { history } from "../../../../history";
+import "../../../../assets/css/dash.css";
+import { apiKey } from "../../../../functions/googleMapConfig";
+import { EditStationInfo } from "../../../../functions/apiActions";
 
 class EditItemModal extends React.Component {
   constructor() {
@@ -26,9 +32,9 @@ class EditItemModal extends React.Component {
         station_imei: "",
         station_name: "",
         station_type: "เกษตรกร",
-        station_id:""
+        station_id: "",
       },
-      sliderBounds : {
+      sliderBounds: {
         ph: {
           min: 0.0,
           max: 14.0,
@@ -57,6 +63,10 @@ class EditItemModal extends React.Component {
           min: 0.0,
           max: 500.0,
         },
+        ammonia: {
+          min: 0.0,
+          max: 35.0,
+        },
       },
     };
   }
@@ -71,9 +81,9 @@ class EditItemModal extends React.Component {
         },
         station: {
           station_imei: "",
-          station_name:"",
+          station_name: "",
           station_type: "เกษตรกร",
-          station_id:"",
+          station_id: "",
           values: {
             ph: {
               status: true,
@@ -131,7 +141,15 @@ class EditItemModal extends React.Component {
                 max: 0,
               },
             },
-          }
+            ammonia: {
+              status: true,
+              value: 0,
+              threshold: {
+                min: 0,
+                max: 0,
+              },
+            },
+          },
         },
         loading: false,
       },
@@ -227,9 +245,9 @@ class EditItemModal extends React.Component {
         },
         station: {
           station_imei: "",
-          station_name:"",
+          station_name: "",
           station_type: "เกษตรกร",
-          station_id:"",
+          station_id: "",
           values: {
             ph: {
               status: true,
@@ -287,8 +305,8 @@ class EditItemModal extends React.Component {
                 max: 0,
               },
             },
-          }
-        }
+          },
+        },
       },
       () => {
         this.handleGeocodeFromLatLng({
@@ -298,7 +316,7 @@ class EditItemModal extends React.Component {
       }
     );
     this.props.toggle();
-  }
+  };
 
   _handleOnChecked = (value) => {
     this.setState(
@@ -324,166 +342,178 @@ class EditItemModal extends React.Component {
   };
 
   _handleEditStation = () => {
-    console.log('777777777777')
+    console.log("777777777777");
     // console.log(this.props.station)
-    console.log(this.state)
+    console.log(this.state);
     EditStationInfo({
-        latitude: this.state.location.lat.toString(),
-        longtitude: this.state.location.long.toString(),
-        stationName: this.state.station.station_name,
-        stationType: this.state.station.station_type,
-        stationId: this.state.station.station_id,
-        tempSensorStatus: this.state.station.values.temperature.status,
-        turbiditySensorStatus: this.state.station.values.turbidity.status,
-        phSensorStatus: this.state.station.values.ph.status,
-        doSensorStatus: this.state.station.values.do.status,
-        ecSensorStatus: this.state.station.values.ec.status,
-        tdsSensorStatus: this.state.station.values.tds.status,
-        salSensorStatus: this.state.station.values.salinity.status,
-        pHMax: this.state.station.values.ph.threshold.max,
-        pHMin: this.state.station.values.ph.threshold.min,
-        doMax: this.state.station.values.do.threshold.max,
-        doMin: this.state.station.values.do.threshold.min,
-        tempMax: this.state.station.values.temperature.threshold.max,
-        tempMin: this.state.station.values.temperature.threshold.min,
-        turpMax: this.state.station.values.turbidity.threshold.max,
-        turpMin: this.state.station.values.turbidity.threshold.min,
-        ecMax: this.state.station.values.ec.threshold.max,
-        ecMin: this.state.station.values.ec.threshold.min,
-        TdsMax: this.state.station.values.tds.threshold.max,
-        TdsMin: this.state.station.values.tds.threshold.min,
-        salMax: this.state.station.values.salinity.threshold.max,
-        salMin: this.state.station.values.salinity.threshold.min,
-        check_every_h: 1,
-        check_every_m: 0,
-        imei_number: this.state.station.station_imei,
-        is_active: true,
-        station_status:'standby'
-    }).then(success => {
+      latitude: this.state.location.lat.toString(),
+      longtitude: this.state.location.long.toString(),
+      stationName: this.state.station.station_name,
+      stationType: this.state.station.station_type,
+      stationId: this.state.station.station_id,
+      tempSensorStatus: this.state.station.values.temperature.status,
+      turbiditySensorStatus: this.state.station.values.turbidity.status,
+      phSensorStatus: this.state.station.values.ph.status,
+      doSensorStatus: this.state.station.values.do.status,
+      ecSensorStatus: this.state.station.values.ec.status,
+      tdsSensorStatus: this.state.station.values.tds.status,
+      salSensorStatus: this.state.station.values.salinity.status,
+      ammoniaSensorStatus: this.state.station.values.ammonia.status,
+      pHMax: this.state.station.values.ph.threshold.max,
+      pHMin: this.state.station.values.ph.threshold.min,
+      doMax: this.state.station.values.do.threshold.max,
+      doMin: this.state.station.values.do.threshold.min,
+      tempMax: this.state.station.values.temperature.threshold.max,
+      tempMin: this.state.station.values.temperature.threshold.min,
+      turpMax: this.state.station.values.turbidity.threshold.max,
+      turpMin: this.state.station.values.turbidity.threshold.min,
+      ecMax: this.state.station.values.ec.threshold.max,
+      ecMin: this.state.station.values.ec.threshold.min,
+      TdsMax: this.state.station.values.tds.threshold.max,
+      TdsMin: this.state.station.values.tds.threshold.min,
+      salMax: this.state.station.values.salinity.threshold.max,
+      salMin: this.state.station.values.salinity.threshold.min,
+      ammoniaMax: this.state.station.values.ammonia.threshold.max,
+      ammoniaMin: this.state.station.values.ammonia.threshold.min,
+      check_every_h: 1,
+      check_every_m: 0,
+      imei_number: this.state.station.station_imei,
+      is_active: true,
+      station_status: "standby",
+    }).then((success) => {
       if (success) {
         // clear field
-        history.push("/")
+        history.push("/");
       } else {
-        alert("เพิ่มอุปกรณ์ไม่สำเร็จ")
+        alert("เพิ่มอุปกรณ์ไม่สำเร็จ");
       }
-    })
-  }
+    });
+  };
 
+  //   station_imei: "",
+  //   station_name:"",
+  //   station_type: "เกษตรกร",
+  //   values: {
+  //     ph: {
+  //       status: true,
+  //       value: 0,
+  //       threshold: {
+  //         min: 0,
+  //         max: 0,
+  //       },
+  //     },
+  //     turbidity: {
+  //       status: true,
+  //       value: 0,
+  //       threshold: {
+  //         min: 0,
+  //         max: 0,
+  //       },
+  //     },
+  //     temperature: {
+  //       status: true,
+  //       value: 0,
+  //       threshold: {
+  //         min: 0,
+  //         max: 0,
+  //       },
+  //     },
+  //     do: {
+  //       status: true,
+  //       value: 0,
+  //       threshold: {
+  //         min: 0,
+  //         max: 0,
+  //       },
+  //     },
+  //     ec: {
+  //       status: true,
+  //       value: 0,
+  //       threshold: {
+  //         min: 0,
+  //         max: 0,
+  //       },
+  //     },
+  //     tds: {
+  //       status: true,
+  //       value: 0,
+  //       threshold: {
+  //         min: 0,
+  //         max: 0,
+  //       },
+  //     },
+  //     salinity: {
+  //       status: true,
+  //       value: 0,
+  //       threshold: {
+  //         min: 0,
+  //         max: 0,
+  //       },
+  //     },
+  //   }
+  // }
 
-
-
-//   station_imei: "",
-//   station_name:"",
-//   station_type: "เกษตรกร",
-//   values: {
-//     ph: {
-//       status: true,
-//       value: 0,
-//       threshold: {
-//         min: 0,
-//         max: 0,
-//       },
-//     },
-//     turbidity: {
-//       status: true,
-//       value: 0,
-//       threshold: {
-//         min: 0,
-//         max: 0,
-//       },
-//     },
-//     temperature: {
-//       status: true,
-//       value: 0,
-//       threshold: {
-//         min: 0,
-//         max: 0,
-//       },
-//     },
-//     do: {
-//       status: true,
-//       value: 0,
-//       threshold: {
-//         min: 0,
-//         max: 0,
-//       },
-//     },
-//     ec: {
-//       status: true,
-//       value: 0,
-//       threshold: {
-//         min: 0,
-//         max: 0,
-//       },
-//     },
-//     tds: {
-//       status: true,
-//       value: 0,
-//       threshold: {
-//         min: 0,
-//         max: 0,
-//       },
-//     },
-//     salinity: {
-//       status: true,
-//       value: 0,
-//       threshold: {
-//         min: 0,
-//         max: 0,
-//       },
-//     },
-//   }
-// }
-
-
-
-  update(){
-
+  update() {
     // this.handleGeocodeFromLatLng({
     //   lat: parseFloat(this.props.station.latitude),
     //   lng: parseFloat(this.props.station.longtitude),
     // });
-    this.state.location.lat = parseFloat(this.props.station.latitude)
-    this.state.location.long = parseFloat(this.props.station.longtitude)
-    
+    this.state.location.lat = parseFloat(this.props.station.latitude);
+    this.state.location.long = parseFloat(this.props.station.longtitude);
+
     // this.handleGeocodeFromLatLng({
     //     lat: parseFloat(this.props.station.latitude),
     //     lng: parseFloat(this.props.station.longtitude),
     //   });
 
-    this.state.station.station_imei = this.props.station.imei_number
-    this.state.station.station_name = this.props.station.stationName
-    this.state.station.station_type = this.props.station.stationType
-    this.state.station.station_id = this.props.station.stationId
+    this.state.station.station_imei = this.props.station.imei_number;
+    this.state.station.station_name = this.props.station.stationName;
+    this.state.station.station_type = this.props.station.stationType;
+    this.state.station.station_id = this.props.station.stationId;
 
-    this.state.station.values.ph.status = this.props.station.phSensorStatus
-    this.state.station.values.ph.threshold.min = this.props.station.pHMin
-    this.state.station.values.ph.threshold.max = this.props.station.pHMax
+    this.state.station.values.ph.status = this.props.station.phSensorStatus;
+    this.state.station.values.ph.threshold.min = this.props.station.pHMin;
+    this.state.station.values.ph.threshold.max = this.props.station.pHMax;
 
-    this.state.station.values.turbidity.status = this.props.station.turbiditySensorStatus
-    this.state.station.values.turbidity.threshold.min = this.props.station.turpMin
-    this.state.station.values.turbidity.threshold.max = this.props.station.turpMax
-    
-    this.state.station.values.temperature.status = this.props.station.tempSensorStatus
-    this.state.station.values.temperature.threshold.min = this.props.station.tempMin
-    this.state.station.values.temperature.threshold.max = this.props.station.tempMax
+    this.state.station.values.turbidity.status =
+      this.props.station.turbiditySensorStatus;
+    this.state.station.values.turbidity.threshold.min =
+      this.props.station.turpMin;
+    this.state.station.values.turbidity.threshold.max =
+      this.props.station.turpMax;
 
-    this.state.station.values.do.status = this.props.station.doSensorStatus
-    this.state.station.values.do.threshold.min = this.props.station.doMin
-    this.state.station.values.do.threshold.max = this.props.station.doMax
+    this.state.station.values.temperature.status =
+      this.props.station.tempSensorStatus;
+    this.state.station.values.temperature.threshold.min =
+      this.props.station.tempMin;
+    this.state.station.values.temperature.threshold.max =
+      this.props.station.tempMax;
 
-    this.state.station.values.ec.status = this.props.station.ecSensorStatus
-    this.state.station.values.ec.threshold.min = this.props.station.ecMin
-    this.state.station.values.ec.threshold.max = this.props.station.ecMax
+    this.state.station.values.do.status = this.props.station.doSensorStatus;
+    this.state.station.values.do.threshold.min = this.props.station.doMin;
+    this.state.station.values.do.threshold.max = this.props.station.doMax;
 
-    this.state.station.values.tds.status = this.props.station.tdsSensorStatus
-    this.state.station.values.tds.threshold.min = this.props.station.TdsMin
-    this.state.station.values.tds.threshold.max = this.props.station.TdsMax
+    this.state.station.values.ec.status = this.props.station.ecSensorStatus;
+    this.state.station.values.ec.threshold.min = this.props.station.ecMin;
+    this.state.station.values.ec.threshold.max = this.props.station.ecMax;
 
-    this.state.station.values.salinity.status = this.props.station.salSensorStatus
-    this.state.station.values.salinity.threshold.min = this.props.station.salMin
-    this.state.station.values.salinity.threshold.max = this.props.station.salMax
+    this.state.station.values.tds.status = this.props.station.tdsSensorStatus;
+    this.state.station.values.tds.threshold.min = this.props.station.TdsMin;
+    this.state.station.values.tds.threshold.max = this.props.station.TdsMax;
 
+    this.state.station.values.salinity.status =
+      this.props.station.salSensorStatus;
+    this.state.station.values.salinity.threshold.min =
+      this.props.station.salMin;
+    this.state.station.values.salinity.threshold.max =
+      this.props.station.salMax;
+
+    this.state.station.values.ammonia.status =
+      this.props.station.ammoniaSensorStatus;
+    this.state.station.values.ammonia.threshold.min =
+      this.props.station.ammoniaMin;
+    this.state.station.values.ammonia.threshold.max =
+      this.props.station.ammoniaMax;
   }
 
   render() {
@@ -491,16 +521,13 @@ class EditItemModal extends React.Component {
       return <></>;
     }
 
-
     // console.log('777777777777')
     // console.log(this.props.station)
     // console.log(this.state)
 
-
-    if(!this.state.station.station_name){
-      this.update()
+    if (!this.state.station.station_name) {
+      this.update();
     }
-
 
     return (
       <Modal
@@ -538,40 +565,44 @@ class EditItemModal extends React.Component {
             <InputGroupAddon addonType="prepend">
               <InputGroupText>ชื่อสถานี</InputGroupText>
             </InputGroupAddon>
-            <Input placeholder="ชื่อ" value={this.state.station.station_name} onChange={
-              e => {
-                let value = e.target.value
-                this.setState(prevState => {
+            <Input
+              placeholder="ชื่อ"
+              value={this.state.station.station_name}
+              onChange={(e) => {
+                let value = e.target.value;
+                this.setState((prevState) => {
                   return {
                     ...prevState,
                     station: {
                       ...prevState.station,
-                      station_name: value
-                    }
-                  }
-                })
-              }
-            } />
+                      station_name: value,
+                    },
+                  };
+                });
+              }}
+            />
           </InputGroup>
 
           <InputGroup className="m-1">
             <InputGroupAddon addonType="prepend">
               <InputGroupText>IMEI Number</InputGroupText>
             </InputGroupAddon>
-            <Input placeholder="12345" value={this.state.station.station_imei} onChange={
-              e => {
-                let value = e.target.value
-                this.setState(prevState => {
+            <Input
+              placeholder="12345"
+              value={this.state.station.station_imei}
+              onChange={(e) => {
+                let value = e.target.value;
+                this.setState((prevState) => {
                   return {
                     ...prevState,
                     station: {
                       ...prevState.station,
-                      station_imei: value
-                    }
-                  }
-                })
-              }
-            } />
+                      station_imei: value,
+                    },
+                  };
+                });
+              }}
+            />
           </InputGroup>
 
           <InputGroup className="m-1">
@@ -585,8 +616,7 @@ class EditItemModal extends React.Component {
               onBlur={(e) => this.handleGeocode(e.target.value)}
             />
           </InputGroup>
-          {
-            /*
+          {/*
             <InputGroup className="m-1">
               <Input
                 placeholder="lat"
@@ -599,13 +629,14 @@ class EditItemModal extends React.Component {
                 disabled
               />
             </InputGroup>
-            */
-          }
+            */}
 
           {/* Google Map*/}
 
           <WrappedMap
-            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=` + apiKey}
+            googleMapURL={
+              `https://maps.googleapis.com/maps/api/js?key=` + apiKey
+            }
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={<div style={{ height: `220px` }} />}
             mapElement={<div style={{ height: `100%` }} />}
@@ -621,353 +652,354 @@ class EditItemModal extends React.Component {
           </Label>
 
           <Row>
-              <Col xs="4">
-                <Input
-                  addon
-                  value="temperature"
-                  type="checkbox"
-                  aria-label="Checkbox for following text input"
-                  checked={this.state.station.values.temperature.status}
-                  onChange={(e) => this._handleOnChecked(e.target.value)}
-                />
-                <Label className="ml-2 mt-3">อุณหภูมิ</Label>
-              </Col>
-              <Col xs="8">
-                <InputRange
-                  step={0.1}
-                  minValue={
-                    this.state.sliderBounds.temperature.min
-                  }
-                  maxValue={
-                    this.state.sliderBounds.temperature.max
-                  }
-                  onChange={(value) =>
-                    this.setState((prevState) => {
-                      return {
-                        ...prevState,
-                        station: {
-                          ...prevState.station,
-                          values: {
-                            ...prevState.station.values,
-                            temperature: {
-                              ...prevState.station.values.temperature,
-                              threshold: {
-                                min: parseFloat(value.min).toFixed(1),
-                                max: parseFloat(value.max).toFixed(1),
-                              },
+            <Col xs="4">
+              <Input
+                addon
+                value="temperature"
+                type="checkbox"
+                aria-label="Checkbox for following text input"
+                checked={this.state.station.values.temperature.status}
+                onChange={(e) => this._handleOnChecked(e.target.value)}
+              />
+              <Label className="ml-2 mt-3">อุณหภูมิ</Label>
+            </Col>
+            <Col xs="8">
+              <InputRange
+                step={0.1}
+                minValue={this.state.sliderBounds.temperature.min}
+                maxValue={this.state.sliderBounds.temperature.max}
+                onChange={(value) =>
+                  this.setState((prevState) => {
+                    return {
+                      ...prevState,
+                      station: {
+                        ...prevState.station,
+                        values: {
+                          ...prevState.station.values,
+                          temperature: {
+                            ...prevState.station.values.temperature,
+                            threshold: {
+                              min: parseFloat(value.min).toFixed(1),
+                              max: parseFloat(value.max).toFixed(1),
                             },
                           },
                         },
-                      };
-                    })
-                  }
-                  value={this.state.station.values.temperature.threshold}
-                  disabled={
-                    !this.state.station.values.temperature.status
-                  }
-                />
-              </Col>
+                      },
+                    };
+                  })
+                }
+                value={this.state.station.values.temperature.threshold}
+                disabled={!this.state.station.values.temperature.status}
+              />
+            </Col>
           </Row>
 
           <Row>
-              <Col xs="4">
-                <Input
-                  addon
-                  value="turbidity"
-                  type="checkbox"
-                  aria-label="Checkbox for following text input"
-                  checked={this.state.station.values.turbidity.status}
-                  onChange={(e) => this._handleOnChecked(e.target.value)}
-                />
-                <Label className="ml-2 mt-3">ความขุ่น</Label>
-              </Col>
-              <Col xs="8">
-                <InputRange
-                  step={0.1}
-                  minValue={
-                    this.state.sliderBounds.turbidity.min
-                  }
-                  maxValue={
-                    this.state.sliderBounds.turbidity.max
-                  }
-                  onChange={(value) =>
-                    this.setState((prevState) => {
-                      return {
-                        ...prevState,
-                        station: {
-                          ...prevState.station,
-                          values: {
-                            ...prevState.station.values,
-                            turbidity: {
-                              ...prevState.station.values.turbidity,
-                              threshold: {
-                                min: parseFloat(value.min).toFixed(1),
-                                max: parseFloat(value.max).toFixed(1),
-                              },
+            <Col xs="4">
+              <Input
+                addon
+                value="turbidity"
+                type="checkbox"
+                aria-label="Checkbox for following text input"
+                checked={this.state.station.values.turbidity.status}
+                onChange={(e) => this._handleOnChecked(e.target.value)}
+              />
+              <Label className="ml-2 mt-3">ความขุ่น</Label>
+            </Col>
+            <Col xs="8">
+              <InputRange
+                step={0.1}
+                minValue={this.state.sliderBounds.turbidity.min}
+                maxValue={this.state.sliderBounds.turbidity.max}
+                onChange={(value) =>
+                  this.setState((prevState) => {
+                    return {
+                      ...prevState,
+                      station: {
+                        ...prevState.station,
+                        values: {
+                          ...prevState.station.values,
+                          turbidity: {
+                            ...prevState.station.values.turbidity,
+                            threshold: {
+                              min: parseFloat(value.min).toFixed(1),
+                              max: parseFloat(value.max).toFixed(1),
                             },
                           },
                         },
-                      };
-                    })
-                  }
-                  value={this.state.station.values.turbidity.threshold}
-                  disabled={
-                    !this.state.station.values.turbidity.status
-                  }
-                />
-              </Col>
+                      },
+                    };
+                  })
+                }
+                value={this.state.station.values.turbidity.threshold}
+                disabled={!this.state.station.values.turbidity.status}
+              />
+            </Col>
           </Row>
 
           <Row>
-              <Col id="check1" xs="4">
-                <Input
-                  addon
-                  value="ph"
-                  type="checkbox"
-                  aria-label="Checkbox for following text input"
-                  checked={this.state.station.values.ph.status}
-                  onChange={(e) => this._handleOnChecked(e.target.value)}
-                />
-                <Label className="ml-2 mt-3">ค่า pH</Label>
-              </Col>
-              <Col xs="8">
-                <InputRange
-                  step={0.1}
-                  minValue={
-                    this.state.sliderBounds.ph.min
-                  }
-                  maxValue={
-                    this.state.sliderBounds.ph.max
-                  }
-                  onChange={(value) =>
-                    this.setState((prevState) => {
-                      return {
-                        ...prevState,
-                        station: {
-                          ...prevState.station,
-                          values: {
-                            ...prevState.station.values,
-                            ph: {
-                              ...prevState.station.values.ph,
-                              threshold: {
-                                min: parseFloat(value.min).toFixed(1),
-                                max: parseFloat(value.max).toFixed(1),
-                              },
+            <Col id="check1" xs="4">
+              <Input
+                addon
+                value="ph"
+                type="checkbox"
+                aria-label="Checkbox for following text input"
+                checked={this.state.station.values.ph.status}
+                onChange={(e) => this._handleOnChecked(e.target.value)}
+              />
+              <Label className="ml-2 mt-3">ค่า pH</Label>
+            </Col>
+            <Col xs="8">
+              <InputRange
+                step={0.1}
+                minValue={this.state.sliderBounds.ph.min}
+                maxValue={this.state.sliderBounds.ph.max}
+                onChange={(value) =>
+                  this.setState((prevState) => {
+                    return {
+                      ...prevState,
+                      station: {
+                        ...prevState.station,
+                        values: {
+                          ...prevState.station.values,
+                          ph: {
+                            ...prevState.station.values.ph,
+                            threshold: {
+                              min: parseFloat(value.min).toFixed(1),
+                              max: parseFloat(value.max).toFixed(1),
                             },
                           },
                         },
-                      };
-                    })
-                  }
-                  value={this.state.station.values.ph.threshold}
-                  disabled={
-                    !this.state.station.values.ph.status
-                  }
-                />
-              </Col>
-          </Row>
-
-          
-
-          
-
-          <Row>
-              <Col xs="4">
-                <Input
-                  addon
-                  value="do"
-                  type="checkbox"
-                  aria-label="Checkbox for following text input"
-                  checked={this.state.station.values.do.status}
-                  onChange={(e) => this._handleOnChecked(e.target.value)}
-                />
-                <Label className="ml-2 mt-3">ค่า DO</Label>
-              </Col>
-              <Col xs="8">
-                <InputRange
-                  step={0.1}
-                  minValue={
-                    this.state.sliderBounds.do.min
-                  }
-                  maxValue={
-                    this.state.sliderBounds.do.max
-                  }
-                  onChange={(value) =>
-                    this.setState((prevState) => {
-                      return {
-                        ...prevState,
-                        station: {
-                          ...prevState.station,
-                          values: {
-                            ...prevState.station.values,
-                            do: {
-                              ...prevState.station.values.do,
-                              threshold: {
-                                min: parseFloat(value.min).toFixed(1),
-                                max: parseFloat(value.max).toFixed(1),
-                              },
-                            },
-                          },
-                        },
-                      };
-                    })
-                  }
-                  value={this.state.station.values.do.threshold}
-                  disabled={
-                    !this.state.station.values.do.status
-                  }
-                />
-              </Col>
-          </Row>
-          <Row>
-              <Col id="check1" xs="4">
-                <Input
-                  addon
-                  value="ec"
-                  type="checkbox"
-                  aria-label="Checkbox for following text input"
-                  checked={this.state.station.values.ec.status}
-                  onChange={(e) => this._handleOnChecked(e.target.value)}
-                />
-                <Label className="ml-2 mt-3">ค่า eC</Label>
-              </Col>
-              <Col xs="8">
-                <InputRange
-                  step={0.1}
-                  minValue={
-                    this.state.sliderBounds.ec.min
-                  }
-                  maxValue={
-                    this.state.sliderBounds.ec.max
-                  }
-                  onChange={(value) =>
-                    this.setState((prevState) => {
-                      return {
-                        ...prevState,
-                        station: {
-                          ...prevState.station,
-                          values: {
-                            ...prevState.station.values,
-                            ec: {
-                              ...prevState.station.values.ec,
-                              threshold: {
-                                min: parseFloat(value.min).toFixed(1),
-                                max: parseFloat(value.max).toFixed(1),
-                              },
-                            },
-                          },
-                        },
-                      };
-                    })
-                  }
-                  value={this.state.station.values.ec.threshold}
-                  disabled={
-                    !this.state.station.values.ec.status
-                  }
-                />
-              </Col>
-          </Row>
-          <Row>
-              <Col id="check1" xs="4">
-                <Input
-                  addon
-                  value="tds"
-                  type="checkbox"
-                  aria-label="Checkbox for following text input"
-                  checked={this.state.station.values.tds.status}
-                  onChange={(e) => this._handleOnChecked(e.target.value)}
-                />
-                <Label className="ml-2 mt-3">ค่า Tds</Label>
-              </Col>
-              <Col xs="8">
-                <InputRange
-                  step={1}
-                  minValue={
-                    this.state.sliderBounds.tds.min
-                  }
-                  maxValue={
-                    this.state.sliderBounds.tds.max
-                  }
-                  onChange={(value) =>
-                    this.setState((prevState) => {
-                      return {
-                        ...prevState,
-                        station: {
-                          ...prevState.station,
-                          values: {
-                            ...prevState.station.values,
-                            tds: {
-                              ...prevState.station.values.tds,
-                              threshold: {
-                                min: parseFloat(value.min).toFixed(1),
-                                max: parseFloat(value.max).toFixed(1),
-                              },
-                            },
-                          },
-                        },
-                      };
-                    })
-                  }
-                  value={this.state.station.values.tds.threshold}
-                  disabled={
-                    !this.state.station.values.tds.status
-                  }
-                />
-              </Col>
+                      },
+                    };
+                  })
+                }
+                value={this.state.station.values.ph.threshold}
+                disabled={!this.state.station.values.ph.status}
+              />
+            </Col>
           </Row>
 
           <Row>
-              <Col id="check1" xs="4">
-                <Input
-                  addon
-                  value="salinity"
-                  type="checkbox"
-                  aria-label="Checkbox for following text input"
-                  checked={this.state.station.values.salinity.status}
-                  onChange={(e) => this._handleOnChecked(e.target.value)}
-                />
-                <Label className="ml-2 mt-3">ค่า Salinity</Label>
-              </Col>
-              <Col xs="8">
-                <InputRange
-                  step={0.1}
-                  minValue={
-                    this.state.sliderBounds.salinity.min
-                  }
-                  maxValue={
-                    this.state.sliderBounds.salinity.max
-                  }
-                  onChange={(value) =>
-                    this.setState((prevState) => {
-                      return {
-                        ...prevState,
-                        station: {
-                          ...prevState.station,
-                          values: {
-                            ...prevState.station.values,
-                            salinity: {
-                              ...prevState.station.values.salinity,
-                              threshold: {
-                                min: parseFloat(value.min).toFixed(1),
-                                max: parseFloat(value.max).toFixed(1),
-                              },
+            <Col xs="4">
+              <Input
+                addon
+                value="do"
+                type="checkbox"
+                aria-label="Checkbox for following text input"
+                checked={this.state.station.values.do.status}
+                onChange={(e) => this._handleOnChecked(e.target.value)}
+              />
+              <Label className="ml-2 mt-3">ค่า DO</Label>
+            </Col>
+            <Col xs="8">
+              <InputRange
+                step={0.1}
+                minValue={this.state.sliderBounds.do.min}
+                maxValue={this.state.sliderBounds.do.max}
+                onChange={(value) =>
+                  this.setState((prevState) => {
+                    return {
+                      ...prevState,
+                      station: {
+                        ...prevState.station,
+                        values: {
+                          ...prevState.station.values,
+                          do: {
+                            ...prevState.station.values.do,
+                            threshold: {
+                              min: parseFloat(value.min).toFixed(1),
+                              max: parseFloat(value.max).toFixed(1),
                             },
                           },
                         },
-                      };
-                    })
-                  }
-                  value={this.state.station.values.salinity.threshold}
-                  disabled={
-                    !this.state.station.values.salinity.status
-                  }
-                />
-              </Col>
+                      },
+                    };
+                  })
+                }
+                value={this.state.station.values.do.threshold}
+                disabled={!this.state.station.values.do.status}
+              />
+            </Col>
           </Row>
+          <Row>
+            <Col id="check1" xs="4">
+              <Input
+                addon
+                value="ec"
+                type="checkbox"
+                aria-label="Checkbox for following text input"
+                checked={this.state.station.values.ec.status}
+                onChange={(e) => this._handleOnChecked(e.target.value)}
+              />
+              <Label className="ml-2 mt-3">ค่า eC</Label>
+            </Col>
+            <Col xs="8">
+              <InputRange
+                step={0.1}
+                minValue={this.state.sliderBounds.ec.min}
+                maxValue={this.state.sliderBounds.ec.max}
+                onChange={(value) =>
+                  this.setState((prevState) => {
+                    return {
+                      ...prevState,
+                      station: {
+                        ...prevState.station,
+                        values: {
+                          ...prevState.station.values,
+                          ec: {
+                            ...prevState.station.values.ec,
+                            threshold: {
+                              min: parseFloat(value.min).toFixed(1),
+                              max: parseFloat(value.max).toFixed(1),
+                            },
+                          },
+                        },
+                      },
+                    };
+                  })
+                }
+                value={this.state.station.values.ec.threshold}
+                disabled={!this.state.station.values.ec.status}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col id="check1" xs="4">
+              <Input
+                addon
+                value="tds"
+                type="checkbox"
+                aria-label="Checkbox for following text input"
+                checked={this.state.station.values.tds.status}
+                onChange={(e) => this._handleOnChecked(e.target.value)}
+              />
+              <Label className="ml-2 mt-3">ค่า Tds</Label>
+            </Col>
+            <Col xs="8">
+              <InputRange
+                step={1}
+                minValue={this.state.sliderBounds.tds.min}
+                maxValue={this.state.sliderBounds.tds.max}
+                onChange={(value) =>
+                  this.setState((prevState) => {
+                    return {
+                      ...prevState,
+                      station: {
+                        ...prevState.station,
+                        values: {
+                          ...prevState.station.values,
+                          tds: {
+                            ...prevState.station.values.tds,
+                            threshold: {
+                              min: parseFloat(value.min).toFixed(1),
+                              max: parseFloat(value.max).toFixed(1),
+                            },
+                          },
+                        },
+                      },
+                    };
+                  })
+                }
+                value={this.state.station.values.tds.threshold}
+                disabled={!this.state.station.values.tds.status}
+              />
+            </Col>
+          </Row>
+
+          <Row>
+            <Col id="check1" xs="4">
+              <Input
+                addon
+                value="salinity"
+                type="checkbox"
+                aria-label="Checkbox for following text input"
+                checked={this.state.station.values.salinity.status}
+                onChange={(e) => this._handleOnChecked(e.target.value)}
+              />
+              <Label className="ml-2 mt-3">ค่า Salinity</Label>
+            </Col>
+            <Col xs="8">
+              <InputRange
+                step={0.1}
+                minValue={this.state.sliderBounds.salinity.min}
+                maxValue={this.state.sliderBounds.salinity.max}
+                onChange={(value) =>
+                  this.setState((prevState) => {
+                    return {
+                      ...prevState,
+                      station: {
+                        ...prevState.station,
+                        values: {
+                          ...prevState.station.values,
+                          salinity: {
+                            ...prevState.station.values.salinity,
+                            threshold: {
+                              min: parseFloat(value.min).toFixed(1),
+                              max: parseFloat(value.max).toFixed(1),
+                            },
+                          },
+                        },
+                      },
+                    };
+                  })
+                }
+                value={this.state.station.values.salinity.threshold}
+                disabled={!this.state.station.values.salinity.status}
+              />
+            </Col>
+          </Row>
+
+          <Row>
+            <Col id="check1" xs="4">
+              <Input
+                addon
+                value="ammonia"
+                type="checkbox"
+                aria-label="Checkbox for following text input"
+                checked={this.state.station.values.ammonia.status}
+                onChange={(e) => this._handleOnChecked(e.target.value)}
+              />
+              <Label className="ml-2 mt-3">ค่า ammonia</Label>
+            </Col>
+            <Col xs="8">
+              <InputRange
+                step={0.1}
+                minValue={this.state.sliderBounds.ammonia.min}
+                maxValue={this.state.sliderBounds.ammonia.max}
+                onChange={(value) =>
+                  this.setState((prevState) => {
+                    return {
+                      ...prevState,
+                      station: {
+                        ...prevState.station,
+                        values: {
+                          ...prevState.station.values,
+                          ammonia: {
+                            ...prevState.station.values.ammonia,
+                            threshold: {
+                              min: parseFloat(value.min).toFixed(1),
+                              max: parseFloat(value.max).toFixed(1),
+                            },
+                          },
+                        },
+                      },
+                    };
+                  })
+                }
+                value={this.state.station.values.ammonia.threshold}
+                disabled={!this.state.station.values.ammonia.status}
+              />
+            </Col>
+          </Row>
+
 
         </ModalBody>
         <ModalFooter className="border-0">
-          <Button className="border-0 rounded-pill" onClick={this._handleEditStation}>
+          <Button
+            className="border-0 rounded-pill"
+            onClick={this._handleEditStation}
+          >
             ยืนยันการแก้ไข
           </Button>
           <Button

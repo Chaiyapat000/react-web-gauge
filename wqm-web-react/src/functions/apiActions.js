@@ -87,7 +87,7 @@ export const fetchStationInfo = () => {
   return axios.post(url, data, options)
   .then((responseJson) => {
     
-    console.log("RESPONSE ==== : ", responseJson);  
+    //console.log("RESPONSE ==== : ", responseJson);  
     return  responseJson.data.stationinfo;
 
   })

@@ -42,83 +42,91 @@ function GaugeChartdetail(props) {
     return data.do / 14;
   }
   return (
-    <div className="col-6 col-sm-6 col-lg-3 p-0">
+    <Row>
       {/*-------------------------PH gauge-----------------------*/}
-      <Card className="m-2 shadow bg-white rounded-lg border-0" color="light">
-        <CardBody>
-          <CardTitle>PH</CardTitle>
-          <GaugeChart
-            id="ph-chart"
-            nrOfLevels={14}
-            arcsLength={[0.5, 0.5]}
-            colors={["#EA4228", "#5BE12C"]}
-            percent={phChange()}
-            arcPadding={0.02}
-            formatTextValue={(value) => ((value * 14) / 100).toPrecision(3)}
-            textColor={phTextColorstate()}
-            //style={chartStyle}
-          />
-        </CardBody>
-      </Card>
+      
+        <Card className="m-2 shadow bg-white rounded-lg border-0" color="light">
+          <CardBody>
+            <CardTitle>PH</CardTitle>
+            <GaugeChart
+              id="ph-chart"
+              nrOfLevels={14}
+              arcsLength={[0.5, 0.5]}
+              colors={["#EA4228", "#5BE12C"]}
+              percent={phChange()}
+              arcPadding={0.02}
+              formatTextValue={(value) => ((value * 14) / 100).toPrecision(3)}
+              textColor={phTextColorstate()}
+              //style={chartStyle}
+            />
+          </CardBody>
+        </Card>
+      
       {/*-------------------------PH gauge-----------------------*/}
 
       {/*-------------------------turb gauge-----------------------*/}
-      <Card className="m-2 shadow bg-white rounded-lg border-0" color="light">
-        <CardBody>
-          <CardTitle>Turbidity</CardTitle>
-          <GaugeChart
-            id="Turbidity-chart"
-            nrOfLevels={14}
-            arcsLength={[0.5, 0.5]}
-            colors={["#EA4228", "#5BE12C"]}
-            percent={0.5}
-            arcPadding={0.02}
-            formatTextValue={(value) => ((value * 14) / 100).toPrecision(3)}
-            //textColor={textColorstate()}
-            //style={chartStyle}
-          />
-        </CardBody>
-      </Card>
+      
+        <Card className="m-2 shadow bg-white rounded-lg border-0" color="light">
+          <CardBody>
+            <CardTitle>Turbidity</CardTitle>
+            <GaugeChart
+              id="Turbidity-chart"
+              nrOfLevels={14}
+              arcsLength={[0.5, 0.5]}
+              colors={["#EA4228", "#5BE12C"]}
+              percent={0.5}
+              arcPadding={0.02}
+              formatTextValue={(value) => ((value * 14) / 100).toPrecision(3)}
+              //textColor={textColorstate()}
+              //style={chartStyle}
+            />
+          </CardBody>
+        </Card>
+      
       {/*-------------------------turb gauge-----------------------*/}
 
       {/*-------------------------Do gauge-----------------------*/}
-      <Card className="m-2 shadow bg-white rounded-lg border-0" color="light">
-        <CardBody>
-          <CardTitle>DO mg/L</CardTitle>
-          <GaugeChart
-            id="DO-chart"
-            nrOfLevels={12}
-            arcsLength={[4 / 12, 2.5 / 12, 3 / 12, 2.5 / 12]}
-            colors={["#EA4228", "#f0ff21", "#5ef78c", "#22f230"]}
-            percent={data.do / 12}
-            arcPadding={0.02}
-            formatTextValue={(value) => (value / 100).toPrecision(3)}
-            textColor={doTextColorstate()}
-            //style={chartStyle}
-          />
-        </CardBody>
-      </Card>
+      <div>
+        <Card className="m-2 shadow bg-white rounded-lg border-0" color="light">
+          <CardBody>
+            <CardTitle>DO mg/L</CardTitle>
+            <GaugeChart
+              id="DO-chart"
+              nrOfLevels={12}
+              arcsLength={[4 / 12, 2.5 / 12, 3 / 12, 2.5 / 12]}
+              colors={["#EA4228", "#f0ff21", "#5ef78c", "#22f230"]}
+              percent={data.do / 12}
+              arcPadding={0.02}
+              formatTextValue={(value) => (value / 100).toPrecision(3)}
+              textColor={doTextColorstate()}
+              //style={chartStyle}
+            />
+          </CardBody>
+        </Card>
+      </div>
       {/*-------------------------Do gauge-----------------------*/}
 
       {/*-------------------------EC gauge-----------------------*/}
-      <Card className="m-2 shadow bg-white rounded-lg border-0" color="light">
-        <CardBody>
-          <CardTitle>EC Us/cm</CardTitle>
-          <GaugeChart
-            id="DO-chart"
-            nrOfLevels={12}
-            arcsLength={[4 / 12, 2.5 / 12, 3 / 12, 2.5 / 12]}
-            colors={["#EA4228", "#f0ff21", "#5ef78c", "#22f230"]}
-            percent={data.do / 12}
-            arcPadding={0.02}
-            formatTextValue={(value) => (value / 100).toPrecision(3)}
-            textColor={doTextColorstate()}
-            //style={chartStyle}
-          />
-        </CardBody>
-      </Card>
+      <div>
+        <Card className="m-2 shadow bg-white rounded-lg border-0" color="light">
+          <CardBody>
+            <CardTitle>EC Us/cm</CardTitle>
+            <GaugeChart
+              id="EC-chart"
+              nrOfLevels={13000}
+              arcsLength={[4 / 12, 2.5 / 12, 3 / 12, 2.5 / 12]}
+              colors={["#EA4228", "#f0ff21", "#5ef78c", "#22f230"]}
+              percent={data.ec / 1000}
+              arcPadding={0.02}
+              formatTextValue={(value) => (value / 1000).toPrecision(2)}
+              textColor={doTextColorstate()}
+              //style={chartStyle}
+            />
+          </CardBody>
+        </Card>
+      </div>
       {/*-------------------------EC gauge-----------------------*/}
-    </div>
+    </Row>
   );
 }
 
