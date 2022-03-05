@@ -73,38 +73,27 @@ export default function GaugeChartdetail2(props) {
         setStationInfo(stations);
       });
 
-      //setData(getData(type,current_value))
+      
       
   }, []);
 
   function getGoodWaterRange() {
-    let min, max;
+    let v=[];
     for (const d in stationInfo) {
       const t = d.toLowerCase();
       //console.log("-----------"+t);
       //console.log("+++++++++++++++++"+type);
       if (t.includes(type.toLowerCase()) || t.includes("turp")) {
         if (t.includes("min")) {
-          min = stationInfo[d];
-          //console.log(d + ":" + min);
-          /*setGoodWaterRange({
-            ...goodWaterRange,
-            d: (goodWaterRange.type[0] = min),
-          });*/
+          v[0] = stationInfo[d];
+          
         }
         if (t.includes("max")) {
-          max = stationInfo[d];
-          //console.log(d + ":" + max);
-          /*setGoodWaterRange({
-            ...goodWaterRange,
-            d: (goodWaterRange.type[1] = max),
-          });*/
+          v[1] = stationInfo[d];
+         
         }
       }
-      /*setGoodWaterRange({
-        ...goodWaterRange,
-        d: (goodWaterRange.type = [max,min]),
-      })*/
+      
     }
   }
 
@@ -129,7 +118,7 @@ export default function GaugeChartdetail2(props) {
   }
 
   getRange();
-  getGoodWaterRange();
+  //getGoodWaterRange();
   if (isLoading) {
     return (
       <section>
@@ -155,10 +144,6 @@ export default function GaugeChartdetail2(props) {
         }}
         rootProps={{ "data-testid": "1" }}
       />
-      <Button color="warning">
-        {" "}
-        แก้ไข <BsScrewdriver />
-      </Button>
     </div>
   );
 }

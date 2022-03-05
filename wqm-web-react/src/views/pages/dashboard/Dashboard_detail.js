@@ -381,6 +381,10 @@ class Dashboard_detail extends React.Component {
                     dash_type={"Temperature"}
                     value={curent_value.temperature}
                   />
+                  <Button color="warning" onClick={this.toggleEdit}>
+                    {" "}
+                    แก้ไข <BsScrewdriver />
+                  </Button>
                 </Card>
 
                 <Card className="m-2 shadow bg-white rounded-lg border-0">
@@ -390,6 +394,10 @@ class Dashboard_detail extends React.Component {
                     activate={station_info.phSensorStatus}
                   ></Dashstatus>
                   <GaugeChartdetail2 dash_type={"pH"} value={curent_value.ph} />
+                  <Button color="warning" onClick={this.toggleEdit}>
+                    {" "}
+                    แก้ไข <BsScrewdriver />
+                  </Button>
                 </Card>
 
                 <Card className="m-2 shadow bg-white rounded-lg border-0">
@@ -399,6 +407,10 @@ class Dashboard_detail extends React.Component {
                     activate={station_info.turbiditySensorStatus}
                   ></Dashstatus>
                   <GaugeChartdetail2 dash_type={"Turbidity"} value={curent_value.turbidity} />
+                  <Button color="warning" onClick={this.toggleEdit}>
+                    {" "}
+                    แก้ไข <BsScrewdriver />
+                  </Button>
                 </Card>
 
                 <Card className="m-2 shadow bg-white rounded-lg border-0">
@@ -408,6 +420,10 @@ class Dashboard_detail extends React.Component {
                     activate={station_info.doSensorStatus}
                   ></Dashstatus>
                   <GaugeChartdetail2 dash_type={"DO"} value={curent_value.do} />
+                  <Button color="warning" onClick={this.toggleEdit}>
+                    {" "}
+                    แก้ไข <BsScrewdriver />
+                  </Button>
                 </Card>
 
                 <Card className="m-2 shadow bg-white rounded-lg border-0">
@@ -417,6 +433,10 @@ class Dashboard_detail extends React.Component {
                     activate={station_info.ecSensorStatus}
                   ></Dashstatus>
                   <GaugeChartdetail2 dash_type={"EC"} value={curent_value.ec} />
+                  <Button color="warning" onClick={this.toggleEdit}>
+                    {" "}
+                    แก้ไข <BsScrewdriver />
+                  </Button>
                 </Card>
 
                 <Card className="m-2 shadow bg-white rounded-lg border-0">
@@ -426,6 +446,10 @@ class Dashboard_detail extends React.Component {
                     activate={station_info.tdsSensorStatus}
                   ></Dashstatus>
                   <GaugeChartdetail2 dash_type={"TDS"} value={curent_value.tds} />
+                  <Button color="warning" onClick={this.toggleEdit}>
+                    {" "}
+                    แก้ไข <BsScrewdriver />
+                  </Button>
                 </Card>
 
                 <Card className="m-2 shadow bg-white rounded-lg border-0">
@@ -435,6 +459,10 @@ class Dashboard_detail extends React.Component {
                     activate={station_info.salSensorStatus}
                   ></Dashstatus>
                   <GaugeChartdetail2 dash_type={"Salinity"} value={curent_value.salinity} />
+                  <Button color="warning" onClick={this.toggleEdit}>
+                    {" "}
+                    แก้ไข <BsScrewdriver />
+                  </Button>
                 </Card>
 
                 <Card className="m-2 shadow bg-white rounded-lg border-0">
@@ -444,6 +472,10 @@ class Dashboard_detail extends React.Component {
                     activate={station_info.salSensorStatus}
                   ></Dashstatus>
                   <GaugeChartdetail2 dash_type={"Ammonia"} value={curent_value.ammonia} />
+                  <Button color="warning" onClick={this.toggleEdit}>
+                    {" "}
+                    แก้ไข <BsScrewdriver />
+                  </Button>
                 </Card>
 
               </Row>

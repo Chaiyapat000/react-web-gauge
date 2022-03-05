@@ -41,20 +41,24 @@ class AddItemModal extends React.Component {
           max: 20.0,
         },
         temperature: {
-          min: -55.0,
-          max: 125.0,
+          min: 0.0,
+          max: 100.0,
         },
         turbidity: {
           min: 0.0,
-          max: 1000.0,
+          max: 3000.0,
         },
         tds: {
           min: 0.0,
-          max: 1000.0,
+          max: 500.0,
         },
         salinity: {
           min: 0.0,
-          max: 1000.0,
+          max: 20.0,
+        },
+        ammonia: {
+          min: 0.0,
+          max: 32.5,
         },
       },
     };
@@ -122,6 +126,14 @@ class AddItemModal extends React.Component {
               },
             },
             salinity: {
+              status: true,
+              value: 0,
+              threshold: {
+                min: 0,
+                max: 0,
+              },
+            },
+            ammonia: {
               status: true,
               value: 0,
               threshold: {
@@ -284,6 +296,14 @@ class AddItemModal extends React.Component {
                 max: 0,
               },
             },
+            ammonia: {
+              status: true,
+              value: 0,
+              threshold: {
+                min: 0,
+                max: 0,
+              },
+            },
           }
         }
       },
@@ -333,6 +353,7 @@ class AddItemModal extends React.Component {
         ecSensorStatus: this.state.station.values.ec.status,
         tdsSensorStatus: this.state.station.values.tds.status,
         salSensorStatus: this.state.station.values.salinity.status,
+        ammoniaSensorStatus: this.state.station.values.ammonia.status,
         pHMax: this.state.station.values.ph.threshold.max,
         pHMin: this.state.station.values.ph.threshold.min,
         doMax: this.state.station.values.do.threshold.max,
@@ -347,6 +368,8 @@ class AddItemModal extends React.Component {
         TdsMin: this.state.station.values.tds.threshold.min,
         salMax: this.state.station.values.salinity.threshold.max,
         salMin: this.state.station.values.salinity.threshold.min,
+        ammoniaMax: this.state.station.values.ammonia.threshold.max,
+        ammoniaMin: this.state.station.values.ammonia.threshold.min,
         check_every_h: 1,
         check_every_m: 0,
         imei_number: this.state.station.station_imei,
@@ -826,6 +849,55 @@ class AddItemModal extends React.Component {
                   value={this.state.station.values.salinity.threshold}
                   disabled={
                     !this.state.station.values.salinity.status
+                  }
+                />
+              </Col>
+          </Row>
+
+          <Row>
+              <Col id="check1" xs="4">
+                <Input
+                  addon
+                  value="salinity"
+                  type="checkbox"
+                  aria-label="Checkbox for following text input"
+                  checked={this.state.station.values.salinity.status}
+                  onChange={(e) => this._handleOnChecked(e.target.value)}
+                />
+                <Label className="ml-2 mt-3">ค่า Salinity</Label>
+              </Col>
+              <Col xs="8">
+                <InputRange
+                  step={0.1}
+                  minValue={
+                    this.state.sliderBounds.ammonia.min
+                  }
+                  maxValue={
+                    this.state.sliderBounds.ammonia.max
+                  }
+                  onChange={(value) =>
+                    this.setState((prevState) => {
+                      return {
+                        ...prevState,
+                        station: {
+                          ...prevState.station,
+                          values: {
+                            ...prevState.station.values,
+                            ammonia: {
+                              ...prevState.station.values.ammonia,
+                              threshold: {
+                                min: parseFloat(value.min).toFixed(1),
+                                max: parseFloat(value.max).toFixed(1),
+                              },
+                            },
+                          },
+                        },
+                      };
+                    })
+                  }
+                  value={this.state.station.values.ammonia.threshold}
+                  disabled={
+                    !this.state.station.values.ammonia.status
                   }
                 />
               </Col>

@@ -305,6 +305,14 @@ class EditItemModal extends React.Component {
                 max: 0,
               },
             },
+            ammonia: {
+              status: true,
+              value: 0,
+              threshold: {
+                min: 0,
+                max: 0,
+              },
+            },
           },
         },
       },
@@ -951,6 +959,7 @@ class EditItemModal extends React.Component {
           </Row>
 
           <Row>
+            {console.log("/////////// ",this.state.station.values.ammonia.status)}
             <Col id="check1" xs="4">
               <Input
                 addon
