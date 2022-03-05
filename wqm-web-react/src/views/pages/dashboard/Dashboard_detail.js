@@ -370,6 +370,22 @@ class Dashboard_detail extends React.Component {
             {curent_value ? (
               <Row >
                 <Row style={{ width: "-webkit-fill-available" ,marginTop: "12px" }}>
+
+                <Col className="col-md-3">
+                  <Card className="shadow bg-white rounded-lg border-0" style={{textAlign: "-webkit-center"}}>
+                    <Dashstatus
+                      dash_name={"Ammonia"}
+                      value={curent_value.ammonia}
+                      activate={station_info.salSensorStatus}
+                    ></Dashstatus>
+                    <GaugeChartdetail2 dash_type={"Ammonia"} value={curent_value.ammonia} />
+                    <Button color="warning" onClick={this.toggleEdit}>
+                      {" "}
+                      แก้ไข <BsScrewdriver />
+                    </Button>
+                  </Card>
+                </Col>
+
                 <Col className="col-md-3" >
                   <Card className="shadow bg-white rounded-lg border-0 " style={{textAlign: "-webkit-center"}}>
                     <Dashstatus
@@ -403,20 +419,7 @@ class Dashboard_detail extends React.Component {
                     </Button>
                   </Card>
                 </Col>
-                <Col className="col-md-3">
-                  <Card className="shadow bg-white rounded-lg border-0" style={{textAlign: "-webkit-center"}}>
-                    <Dashstatus
-                      dash_name={"Turbidity"}
-                      value={curent_value.turbidity}
-                      activate={station_info.turbiditySensorStatus}
-                    ></Dashstatus>
-                    <GaugeChartdetail2 dash_type={"Turbidity"} value={curent_value.turbidity} />
-                    <Button color="warning" onClick={this.toggleEdit}>
-                      {" "}
-                      แก้ไข <BsScrewdriver />
-                    </Button>
-                  </Card>
-                </Col>
+
                 <Col className="col-md-3">
                   <Card className="shadow bg-white rounded-lg border-0" style={{textAlign: "-webkit-center"}}>
                     <Dashstatus
@@ -478,6 +481,20 @@ class Dashboard_detail extends React.Component {
               <Col className="col-md-3">
                   <Card className="shadow bg-white rounded-lg border-0" style={{textAlign: "-webkit-center"}}>
                     <Dashstatus
+                      dash_name={"Turbidity"}
+                      value={curent_value.turbidity}
+                      activate={station_info.turbiditySensorStatus}
+                    ></Dashstatus>
+                    <GaugeChartdetail2 dash_type={"Turbidity"} value={curent_value.turbidity} />
+                    <Button color="warning" onClick={this.toggleEdit}>
+                      {" "}
+                      แก้ไข <BsScrewdriver />
+                    </Button>
+                  </Card>
+                </Col>
+              {/* <Col className="col-md-3">
+                  <Card className="shadow bg-white rounded-lg border-0" style={{textAlign: "-webkit-center"}}>
+                    <Dashstatus
                       dash_name={"Ammonia"}
                       value={curent_value.ammonia}
                       activate={station_info.salSensorStatus}
@@ -488,9 +505,10 @@ class Dashboard_detail extends React.Component {
                       แก้ไข <BsScrewdriver />
                     </Button>
                   </Card>
-                </Col>
+                </Col> */}
                 </Row>
               </Row>
+              ////////////////////////////////////////////////////////////////////////////////////////////////
             ) : (
               <Row>
                 <Dashstatus dash_name={"Temperature"} value={0}>

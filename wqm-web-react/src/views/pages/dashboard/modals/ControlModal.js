@@ -72,6 +72,14 @@ class ControlModal extends React.Component {
     this.forceUpdate();
   };
 
+    _handleOnChecked_2 = (value) => {
+
+    // this.setState({is_active : !this.props.station.is_active})
+    this.props.station.is_auto_water_treatment = !this.props.station.is_auto_water_treatment
+    console.log('7777777777777777 ',this.props.station.is_auto_water_treatment);
+    this.forceUpdate();
+  };
+
   // this.props.station.start_time
   // start_time:'00:00',
   // end_time:'23:59'
@@ -104,6 +112,14 @@ class ControlModal extends React.Component {
     this.forceUpdate();
   }
 
+  onChangeEveryMtreatment = (value) =>{
+    
+    console.log('onChangeEveryMtreatment *****  ',value)
+    this.props.station.water_treatment_min_replete = value
+    this.forceUpdate();
+  }
+  
+
   measureNow = () =>{
     measureNow(this.props.station.stationId).then(success => {
       if (success) {
@@ -123,7 +139,7 @@ class ControlModal extends React.Component {
     }
 
     console.log('render-control')
-    // console.log(this.props.station)
+    console.log(this.props.station)
 
 
     return (
@@ -146,6 +162,51 @@ class ControlModal extends React.Component {
               onChange={(e) => this._handleOnChecked(e.target)}
             />
             <Label className="ml-2 mt-0"><h5>เปิดการทำงานสถานี</h5></Label>
+          </Row>
+          <Row>
+            <Input
+              addon
+              value="is_activate"
+              type="checkbox"
+              aria-label="Checkbox for following text input"
+              checked={this.props.station.is_auto_water_treatment}
+              onChange={(e) => this._handleOnChecked_2(e.target)}
+            />
+            
+              <Label className="ml-2 mt-0"><h5>เปิดบำบัดน้ำอัตโนมัติ</h5></Label>  
+          </Row>
+          <Row>
+              <Col xs="3" >
+                <h5>ตรวจทุกๆ</h5>
+              </Col>
+              </Row>
+              <Row>
+              <Col xs="3" >
+                <h5></h5>
+              </Col>
+
+              <Col xs="3" >
+                <FormGroup>
+                  <Input 
+                    type="select"
+                    value={this.props.station.water_treatment_min_replete}
+                    onChange={(e) => this.onChangeEveryMtreatment(e.target.value)}
+                  >
+                    {
+                      minutelist.map((minute, index) => {
+                        // console.log(minute)
+                        return(
+                          <option value={minute.value}>{minute.label}</option>
+                        )
+                      })
+                    }
+                  </Input>
+                </FormGroup>  
+              </Col>
+              <Col xs="2" >
+                <h5>นาที.</h5>
+              </Col>
+
           </Row>
           <ColoredLine color="red" />
           <Row>
