@@ -368,78 +368,87 @@ class Dashboard_detail extends React.Component {
           </Col>
           <Col md={9} style={{ backgroundColor: "whitesmoke" }}>
             {curent_value ? (
-              <Row className="col-3-sm">
-                <Card className="m-2 shadow bg-white rounded-lg border-0 ">
-                  <Dashstatus
-                    dash_name={"Temperature"}
-                    value={curent_value.temperature}
-                    activate={station_info.tempSensorStatus}
-                  >
-                    {" "}
-                  </Dashstatus>
-                  <GaugeChartdetail2
-                    dash_type={"Temperature"}
-                    value={curent_value.temperature}
-                  />
-                  <Button color="warning" onClick={this.toggleEdit}>
-                    {" "}
-                    แก้ไข <BsScrewdriver />
-                  </Button>
-                </Card>
-
-                <Card className="m-2 shadow bg-white rounded-lg border-0">
-                  <Dashstatus
-                    dash_name={"pH"}
-                    value={curent_value.ph}
-                    activate={station_info.phSensorStatus}
-                  ></Dashstatus>
-                  <GaugeChartdetail2 dash_type={"pH"} value={curent_value.ph} />
-                  <Button color="warning" onClick={this.toggleEdit}>
-                    {" "}
-                    แก้ไข <BsScrewdriver />
-                  </Button>
-                </Card>
-
-                <Card className="m-2 shadow bg-white rounded-lg border-0">
-                  <Dashstatus
-                    dash_name={"Turbidity"}
-                    value={curent_value.turbidity}
-                    activate={station_info.turbiditySensorStatus}
-                  ></Dashstatus>
-                  <GaugeChartdetail2 dash_type={"Turbidity"} value={curent_value.turbidity} />
-                  <Button color="warning" onClick={this.toggleEdit}>
-                    {" "}
-                    แก้ไข <BsScrewdriver />
-                  </Button>
-                </Card>
-
-                <Card className="m-2 shadow bg-white rounded-lg border-0">
-                  <Dashstatus
-                    dash_name={"DO"}
-                    value={curent_value.do}
-                    activate={station_info.doSensorStatus}
-                  ></Dashstatus>
-                  <GaugeChartdetail2 dash_type={"DO"} value={curent_value.do} />
-                  <Button color="warning" onClick={this.toggleEdit}>
-                    {" "}
-                    แก้ไข <BsScrewdriver />
-                  </Button>
-                </Card>
-
-                <Card className="m-2 shadow bg-white rounded-lg border-0">
-                  <Dashstatus
-                    dash_name={"EC"}
-                    value={curent_value.ec}
-                    activate={station_info.ecSensorStatus}
-                  ></Dashstatus>
-                  <GaugeChartdetail2 dash_type={"EC"} value={curent_value.ec} />
-                  <Button color="warning" onClick={this.toggleEdit}>
-                    {" "}
-                    แก้ไข <BsScrewdriver />
-                  </Button>
-                </Card>
-
-                <Card className="m-2 shadow bg-white rounded-lg border-0">
+              <Row >
+                <Row style={{ width: "-webkit-fill-available" ,marginTop: "12px" }}>
+                <Col className="col-md-3" >
+                  <Card className="shadow bg-white rounded-lg border-0 " style={{textAlign: "-webkit-center"}}>
+                    <Dashstatus
+                      dash_name={"Temperature"}
+                      value={curent_value.temperature}
+                      activate={station_info.tempSensorStatus}
+                    >
+                      {" "}
+                    </Dashstatus>
+                    <GaugeChartdetail2
+                      dash_type={"Temperature"}
+                      value={curent_value.temperature}
+                    />
+                    <Button color="warning" onClick={this.toggleEdit}>
+                      {" "}
+                      แก้ไข <BsScrewdriver />
+                    </Button>
+                  </Card>
+                </Col>
+                <Col className="col-md-3">
+                  <Card className="shadow bg-white rounded-lg border-0" style={{textAlign: "-webkit-center"}}>
+                    <Dashstatus
+                      dash_name={"pH"}
+                      value={curent_value.ph}
+                      activate={station_info.phSensorStatus}
+                    ></Dashstatus>
+                    <GaugeChartdetail2 dash_type={"pH"} value={curent_value.ph} />
+                    <Button color="warning" onClick={this.toggleEdit}>
+                      {" "}
+                      แก้ไข <BsScrewdriver />
+                    </Button>
+                  </Card>
+                </Col>
+                <Col className="col-md-3">
+                  <Card className="shadow bg-white rounded-lg border-0" style={{textAlign: "-webkit-center"}}>
+                    <Dashstatus
+                      dash_name={"Turbidity"}
+                      value={curent_value.turbidity}
+                      activate={station_info.turbiditySensorStatus}
+                    ></Dashstatus>
+                    <GaugeChartdetail2 dash_type={"Turbidity"} value={curent_value.turbidity} />
+                    <Button color="warning" onClick={this.toggleEdit}>
+                      {" "}
+                      แก้ไข <BsScrewdriver />
+                    </Button>
+                  </Card>
+                </Col>
+                <Col className="col-md-3">
+                  <Card className="shadow bg-white rounded-lg border-0" style={{textAlign: "-webkit-center"}}>
+                    <Dashstatus
+                      dash_name={"DO"}
+                      value={curent_value.do}
+                      activate={station_info.doSensorStatus}
+                    ></Dashstatus>
+                    <GaugeChartdetail2 dash_type={"DO"} value={curent_value.do} />
+                    <Button color="warning" onClick={this.toggleEdit}>
+                      {" "}
+                      แก้ไข <BsScrewdriver />
+                    </Button>
+                  </Card>
+                  </Col>
+              </Row>
+              <Row  style={{ width: "-webkit-fill-available",marginTop: "12px" }}>
+              <Col className="col-md-3">
+                <Card className="shadow bg-white rounded-lg border-0" style={{textAlign: "-webkit-center"}}>
+                    <Dashstatus
+                      dash_name={"EC"}
+                      value={curent_value.ec}
+                      activate={station_info.ecSensorStatus}
+                    ></Dashstatus>
+                    <GaugeChartdetail2 dash_type={"EC"} value={curent_value.ec} />
+                    <Button color="warning" onClick={this.toggleEdit}>
+                      {" "}
+                      แก้ไข <BsScrewdriver />
+                    </Button>
+                  </Card>
+              </Col>
+              <Col className="col-md-3">
+                <Card className="shadow bg-white rounded-lg border-0" style={{textAlign: "-webkit-center"}}>
                   <Dashstatus
                     dash_name={"TDS"}
                     value={curent_value.tds}
@@ -451,8 +460,9 @@ class Dashboard_detail extends React.Component {
                     แก้ไข <BsScrewdriver />
                   </Button>
                 </Card>
-
-                <Card className="m-2 shadow bg-white rounded-lg border-0">
+              </Col>
+              <Col className="col-md-3">
+                <Card className="shadow bg-white rounded-lg border-0" style={{textAlign: "-webkit-center"}}>
                   <Dashstatus
                     dash_name={"Salinity"}
                     value={curent_value.salinity}
@@ -464,20 +474,22 @@ class Dashboard_detail extends React.Component {
                     แก้ไข <BsScrewdriver />
                   </Button>
                 </Card>
-
-                <Card className="m-2 shadow bg-white rounded-lg border-0">
-                  <Dashstatus
-                    dash_name={"Ammonia"}
-                    value={curent_value.ammonia}
-                    activate={station_info.salSensorStatus}
-                  ></Dashstatus>
-                  <GaugeChartdetail2 dash_type={"Ammonia"} value={curent_value.ammonia} />
-                  <Button color="warning" onClick={this.toggleEdit}>
-                    {" "}
-                    แก้ไข <BsScrewdriver />
-                  </Button>
-                </Card>
-
+              </Col>
+              <Col className="col-md-3">
+                  <Card className="shadow bg-white rounded-lg border-0" style={{textAlign: "-webkit-center"}}>
+                    <Dashstatus
+                      dash_name={"Ammonia"}
+                      value={curent_value.ammonia}
+                      activate={station_info.salSensorStatus}
+                    ></Dashstatus>
+                    <GaugeChartdetail2 dash_type={"Ammonia"} value={curent_value.ammonia} />
+                    <Button color="warning" onClick={this.toggleEdit}>
+                      {" "}
+                      แก้ไข <BsScrewdriver />
+                    </Button>
+                  </Card>
+                </Col>
+                </Row>
               </Row>
             ) : (
               <Row>
