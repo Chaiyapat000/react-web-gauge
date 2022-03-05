@@ -181,8 +181,7 @@ export default function GaugeChartdetail2(props) {
       </section>
     );
   }
-  console.log('--------------'+type+getGoodMax(type))
-  console.log('--------------'+type+getGoodMin(type))
+  console.log('----------'+data)
   return (
     <div className="max-width container-lg">
       <Chart
@@ -195,7 +194,7 @@ export default function GaugeChartdetail2(props) {
           redTo: 1,
           greenFrom: getGoodMin(type),
           greenTo: getGoodMax(type),
-          minorTicks: 5,
+          minorTicks: 6,
           majorTicks: getRange(type),
         }}
         rootProps={{ "data-testid": "1" }}

@@ -395,10 +395,10 @@ class Dashboard_detail extends React.Component {
                     >
                       {" "}
                     </Dashstatus>
-                    <GaugeChartdetail2
+                   <GaugeChartdetail2
                       dash_type={"Temperature"}
                       value={curent_value.temperature}
-                    />
+                    /> 
                     <Button color="warning" onClick={this.toggleEdit}>
                       {" "}
                       แก้ไข <BsScrewdriver />
@@ -427,7 +427,8 @@ class Dashboard_detail extends React.Component {
                       value={curent_value.do}
                       activate={station_info.doSensorStatus}
                     ></Dashstatus>
-                    <GaugeChartdetail2 dash_type={"DO"} value={curent_value.do} />
+                    <GaugeChartdetail2 dash_type={"DO"} value={curent_value.do} /> 
+                    
                     <Button color="warning" onClick={this.toggleEdit}>
                       {" "}
                       แก้ไข <BsScrewdriver />
@@ -443,7 +444,8 @@ class Dashboard_detail extends React.Component {
                       value={curent_value.ec}
                       activate={station_info.ecSensorStatus}
                     ></Dashstatus>
-                    <GaugeChartdetail2 dash_type={"EC"} value={curent_value.ec} />
+                    <GaugeChartdetail2 dash_type={"EC"} value={curent_value.ec} /> 
+                    
                     <Button color="warning" onClick={this.toggleEdit}>
                       {" "}
                       แก้ไข <BsScrewdriver />
@@ -457,7 +459,8 @@ class Dashboard_detail extends React.Component {
                     value={curent_value.tds}
                     activate={station_info.tdsSensorStatus}
                   ></Dashstatus>
-                  <GaugeChartdetail2 dash_type={"TDS"} value={curent_value.tds} />
+                 <GaugeChartdetail2 dash_type={"TDS"} value={curent_value.tds} />
+                  
                   <Button color="warning" onClick={this.toggleEdit}>
                     {" "}
                     แก้ไข <BsScrewdriver />
@@ -471,7 +474,8 @@ class Dashboard_detail extends React.Component {
                     value={curent_value.salinity}
                     activate={station_info.salSensorStatus}
                   ></Dashstatus>
-                  <GaugeChartdetail2 dash_type={"Salinity"} value={curent_value.salinity} />
+                    <GaugeChartdetail2 dash_type={"Salinity"} value={curent_value.salinity} />
+                  
                   <Button color="warning" onClick={this.toggleEdit}>
                     {" "}
                     แก้ไข <BsScrewdriver />
@@ -485,7 +489,8 @@ class Dashboard_detail extends React.Component {
                       value={curent_value.turbidity}
                       activate={station_info.turbiditySensorStatus}
                     ></Dashstatus>
-                    <GaugeChartdetail2 dash_type={"Turbidity"} value={curent_value.turbidity} />
+                      <GaugeChartdetail2 dash_type={"Turbidity"} value={curent_value.turbidity} />
+                    
                     <Button color="warning" onClick={this.toggleEdit}>
                       {" "}
                       แก้ไข <BsScrewdriver />
