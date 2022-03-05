@@ -29,7 +29,9 @@ const fullRrangeValue = {
 };
 
 function getData(type, value) {
-  //console.log("--------------" + value);
+  console.log("-------type-------" + type);
+  console.log("-------value-------" + value);
+  type = type.toLowerCase()
   return [
     ["Label", "Value"],
     [String(type), value],
@@ -181,8 +183,9 @@ export default function GaugeChartdetail2(props) {
       </section>
     );
   }
-  console.log('--------------'+type+getGoodMax(type))
-  console.log('--------------'+type+getGoodMin(type))
+  console.log('--------getGoodMax------'+type+getGoodMax(type))
+  console.log('--------getGoodMin------'+type+getGoodMin(type))
+  console.log('--------getRange------'+type+getRange(type))
   return (
     <div className="max-width container-lg">
       <Chart
@@ -191,10 +194,15 @@ export default function GaugeChartdetail2(props) {
         loader={<div>Loading Chart</div>}
         data={data}
         options={{
-          redFrom: 0, //////ref from type type is props.dash_type
-          redTo: 1,
-          greenFrom: getGoodMin(type),
-          greenTo: getGoodMax(type),
+         
+          // greenFrom: getGoodMin(type),
+          // greenTo: getGoodMax(type),
+          greenFrom: (getGoodMin(type)/getRange(type)[1])*100,
+          greenTo: (getGoodMax(type)/getRange(type)[1])*100,
+          redFrom: (getGoodMax(type)/getRange(type)[1])*100, //////ref from type type is props.dash_type
+          redTo: 100,
+          yellowFrom: 0, //////ref from type type is props.dash_type
+          yellowTo: (getGoodMin(type)/getRange(type)[1])*100,
           minorTicks: 5,
           majorTicks: getRange(type),
         }}
